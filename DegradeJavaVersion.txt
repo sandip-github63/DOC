@@ -1,0 +1,72 @@
+How To Degrade Your Java Project 17 to Java 8
+******************************************************************************************************************************************
+
+Note : Spring Boot 3+ Support java 9+ version
+       Spring Boot 2.7.2 Support java 8
+       
+ So when you are using Spring Boot project in STS then STS automatically detect java 17 from STS plugin for spring boot 3+ 
+ Hence to use java 1.8 in your Project then make sure your Spring Boot version should be 2.7.2
+ 
+ 
+ STS configure 
+ ************************
+ A. JRE ADD
+ 
+ Windows-->Preferences-->java --> installed JRE add new JRE from your local machine installed path .
+ 
+ 
+ In ubuntu to check path of installed JDK PATH is
+ *************************************************
+ 1. echo $JAVA_HOME
+ 
+ 2. /usr/lib/jvm/java-8-openjdk-amd64  if your local machine have set the path then got this output 
+ 
+ 3. Now add this path for JRE in STS
+ 
+
+ B. ADD Compiler 
+**************************************************
+window -->preferences -> compiler --> 17 to 1.8 
+
+
+After that Open your project 
+***********************************
+JRE-->right click-->Build Path --> add --> new JRE for 1.8
+
+***********************************************************************************************************************************************
+
+Note : Also Open your pom.xml file 
+***************************************************************************
+and add 
+
+<java.version>1.8</java.version>
+
+
+********************************************************************************
+
+
+Now Suppose Your Spring Boot application is already compiled by java 17 so when you run then got error 
+because your .class file are build on java 17 why is not run by JRE 8 hence give error 
+
+
+Solution 
+****************
+Now you have to clean the compiled .classes file from your project so for that 
+
+1) open your project in showin--> system Explorer
+2) open terminal navigate your project inside which pom.xml is showing 
+3) run the command to delete the old compiled .classes from the project so that you can rebuild and compiled it 
+4) mvn clean install
+
+5) After that you can run your application in java 8 Successfully without error .
+
+
+
+
+
+ 
+  
+
+ 
+ 
+        
